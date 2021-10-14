@@ -11,11 +11,11 @@ app.use(cors());
 
 app.use(passport.initialize());
 app.use(
-  "/auth/facebook",
+  "/auth-api/facebook",
   require("./routes/authentication/facebookAuthentication")
 );
 
-app.use("/auth", require("./routes/authorization/jwt_authorization"));
+app.use("/auth-api", require("./routes/authorization/jwt_authorization"));
 
 app.listen(5000, () => {
   console.log("server is running on port 5000");

@@ -2,13 +2,13 @@
 	import { onMount } from 'svelte';
 	import { user, failureMsg } from '../../stores/auth_store';
 	import { goto } from '$app/navigation';
-	export let failureRedirect = 'signin-signup'; //if it's null you don't redirect
-	export let failureMsgDefault = 'you dont have a jwt';
+	export let failureRedirect = null; //if it's null you don't redirect
+	export let failureMsgDefault = null;
 	//failureMsg store will only be updated with the value of failureMsgDefault if:
-	//	1.the server doesn't send a failure redirect
+	//	1.the server sends a failureMsgData == a falsy Value
 	//	2.or if there's not a jwt in the localStorage
-	//failureMsgDefault can be (null or falsy) that way if you are in one of the above cases
-	//failureMsg store will be remain the same
+	//->failureMsgDefault can be null that way the only way to change faulureMsg store
+	//	is via server respone (failureMsgData)
 
 	const isTokenVerified = async (jwt) => {
 		try {
@@ -20,7 +20,7 @@
 				return false;
 			}
 			//if JWT does exist in local storage
-			const response = await fetch(`http://localhost:5000/auth/is-verify`, {
+			const response = await fetch(`http://localhost:5000/auth-api/is-verify`, {
 				method: 'GET',
 				headers: { 'Content-Type': 'application/json', jwt: jwt }
 			});
@@ -63,7 +63,9 @@
 		console.log({ msg: 'user store', user_store: $user });
 		console.log({ msg: 'isVerified', isVerified });
 		if (!isVerified) {
-			console.log({ msg: 'failureMsg store', failureMsg_store: $failureMsg });
+			console.log({ msg: 'NOT VERIFIED - failureMsg store', failureMsg_store: $failureMsg });
+		} else {
+			console.log({ msg: 'VERIFIED - failureMsg store', failureMsg_store: $failureMsg });
 		}
 		//----------------------------------------------------------------/
 

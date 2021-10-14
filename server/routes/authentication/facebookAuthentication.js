@@ -11,20 +11,40 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
-      fbGraphVersion: "v3.0"
+      fbGraphVersion: "v3.0",
+      //scope fetch from facebook api
+      scope: ["emails", "name", "user_gender", "user_friends", "photos"],
+      //maps to the profileFields
+      //THE CODE IS ONLY FOR REFERENCE-------------------------------------------------------------/
+      //   Strategy.prototype._convertProfileFields = function(profileFields) {
+      //     var map = {
+      //     'id':          'id',
+      //     'username':    'username',
+      //     'displayName': 'name',
+      //     'name':       ['last_name', 'first_name', 'middle_name'],
+      //     'gender':      'gender',
+      //     'profileUrl':  'link',
+      //     'emails':      'email',
+      //     'photos':      'picture'
+      // };
+      //link:https://stackoverflow.com/questions/20457849/passport-facebook-in-nodejs-profile-fields
+      //----------------------------------------------------------------------------------------END/
+      profileFields: [
+        "emails",
+        "last_name",
+        "first_name",
+        "gender",
+        "friends",
+        "picture"
+      ]
     },
     async (accessToken, refreshToken, profile, done) => {
-      //get email
-      const email = profile.emails[0].value;
-      //save new data to database
-      const foundUser = await getUserByEmail(email);
-      let user;
-      if (!(foundUser == {})) {
-        //NEW USER
-        //delete some properties from profile and save it to variable user
-        let { _json, _raw, emails, provider, id, ...user } = profile;
+      const foundUser = await getUserByEmail(profile._json.email);
+      const userNotFound = Object.entries(foundUser).length === 0;
+      if (userNotFound) {
+        let user = profile._json;
+        //CHANGE THE CODE HERE IF YOU WANT----------------------------------/
         //add more properties to User
-        user.email = email;
         user.profileStatus = {
           admin: false,
           premium_user: false,
@@ -37,11 +57,13 @@ passport.use(
         user.providers = [
           { provider: "facebook", id: profile.id, accessToken: accessToken }
         ];
-        //add user to the database
+        //---------------------------------------------------------------END/
         await addOrUpdateUser(user);
+        console.log({ msg: "user just added", user });
         return done(null, user);
       } else {
-        let user = foundUser;
+        const user = foundUser.Item;
+        console.log({ msg: "user already exists", user });
         return done(null, user);
       }
     }
@@ -58,7 +80,10 @@ router.get(
     let token;
     let resStatus;
     if (user) {
+      //CHANGE THE CODE HERE IF YOU WANT-------------------------------/
+      //delete private to the user infos
       delete user.providers;
+      //------------------------------------------------------------END/
       token = jwtGenerator(user);
       resStatus = 200;
     } else {

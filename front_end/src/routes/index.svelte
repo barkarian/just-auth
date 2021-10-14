@@ -1,5 +1,4 @@
 <script>
-	import Login from '$lib/authentication/Login.svelte';
 	import { goto } from '$app/navigation';
 
 	const handleClickRedirect = () => {

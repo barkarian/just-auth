@@ -15,7 +15,6 @@ module.exports = async (req, res, next) => {
     req.verifiedInfos = payload;
     next();
   } catch (err) {
-    //console.error(err.message);
     return res
       .status(403)
       .json({ failureMsgData: "serverMsg:You are not authorized" });
