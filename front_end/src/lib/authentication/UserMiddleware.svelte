@@ -28,7 +28,6 @@
 			//if token is valid
 			//server sends back userData, token, failureMessageData
 			const { userData, token, failureMsgData } = parseRes;
-			console.log('HEYYYYY');
 			if (userData || token) {
 				failureMsg.set(null);
 			} else if (failureMsgData) {

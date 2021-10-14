@@ -7,12 +7,12 @@
 	export let scopeValue = 'email,public_profile';
 	export let redirectURL = null; //if null don't redirect
 	//failureMsg store value will get one of those Messages
-	export let facebookServerErrMsg = 'something went wrong - facebook side'; //if null don't set a failureMsg
+	export let facebookErrMsg = 'something went wrong - facebook side'; //if null don't set a failureMsg
 	export let serverErrMsg = 'Authentication or internal error in our server'; //if null don't set a failureMsg
 
 	const authFailure = () => {
-		if (facebookServerErrMsg) {
-			failureMsg.set(facebookServerErrMsg);
+		if (facebookErrMsg) {
+			failureMsg.set(facebookErrMsg);
 		}
 	};
 
@@ -26,7 +26,6 @@
 				//change the code here if you want
 				if (serverErrMsg) {
 					failureMsg.set(serverErrMsg);
-					console.log($failureMsg);
 				}
 				return;
 			}
