@@ -1,3 +1,11 @@
+# How to run the project?
+
+1. Open a terminal for front_end and run:
+2. cd front_end && npm run dev -- --https
+3. After that open a new terminal for server and run:
+   - if you have nodemon installed:cd server && nodemon
+   - if you don't have nodemon installed:cd server && node index.js
+
 # What is this repo is good for?
 
 - Is just a skeleton to create your authentication service with little modifications to the src code.
