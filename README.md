@@ -63,7 +63,9 @@ Check the documentation only if you have problems to understanding something.
 > Error_Message
 
 - displays `failureMsg` store for some time if `failureMsg!=null`
-- PROPS: - livingTime: display time in ms(default value is "forever")
+- PROPS:
+
+* livingTime: display time in ms(default value is "forever")
 
 > LoginFacebook
 
