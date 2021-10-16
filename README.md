@@ -8,7 +8,7 @@
 
 - Simple and easy to understand.
 
-#How it works
+# How it works
 
 > Client side
 
@@ -70,11 +70,11 @@ Check the documentation only if you have problems to understanding something.
 - In case of failure(serverSide or facebookSide) it can set <failureMsg  STORE>
 - PROPS:
   _ appIdValue:get it from facebook for developers
-  _ scopeValue:ask user to give permissions to his access*token
-  * redirectURL:defaultValue==null(which means don't redirect)
-  \_ facebookErrMsg,serverErrMsg:<failureMsg  STORE> gets the value of them
-  (if null don't set a failureMsg)
-  > UserMiddleware
+  _ scopeValue:ask user to give permissions to his access\*token
+  - redirectURL:defaultValue==null(which means don't redirect)
+    \_ facebookErrMsg,serverErrMsg:<failureMsg  STORE> gets the value of them
+    (if null don't set a failureMsg)
+    > UserMiddleware
 - Checks if user exists and if a page reload has happened it checks that the user is still logged by send "jwt from local storage" to server and verify it.
 - PROPS:
 
