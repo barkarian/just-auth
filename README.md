@@ -64,7 +64,9 @@ Check the documentation only if you have problems to understanding something.
 
 - displays `failureMsg` store for some time if `failureMsg!=null`
 - PROPS: - livingTime: display time in ms(default value is "forever")
-  > LoginFacebook
+
+> LoginFacebook
+
 - Asks the user for permissions and retrieves the facebook access tokenthen access token is send to our server so our server can retrieve the infos and search/insert to the database
 - In case of success it can redirect
 - In case of failure(serverSide or facebookSide) it can set <failureMsg  STORE>
@@ -74,7 +76,9 @@ Check the documentation only if you have problems to understanding something.
   - redirectURL:defaultValue==null(which means don't redirect)
     \_ facebookErrMsg,serverErrMsg:<failureMsg  STORE> gets the value of them
     (if null don't set a failureMsg)
-    > UserMiddleware
+
+> UserMiddleware
+
 - Checks if user exists and if a page reload has happened it checks that the user is still logged by send "jwt from local storage" to server and verify it.
 - PROPS:
 
