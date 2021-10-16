@@ -89,9 +89,9 @@ Check the documentation only if you have problems to understanding something.
   - If server doesn't send <failureMsgData> or if jwt doesn't exist in our local storage then the value of<failureMsg  STORE> will be set to <failureMsgDefault>
 
 - CAUSION:
-  _ You can't put anything important on the front-end and feeling that is safe because of UserMiddleware module.
-  _ anything you send to front end is accessible by the client even if the UI doesn't let them to see it.
-  _ UserMiddleware is just a module for responsiveness and good user experience.
-  _ for example:
-  It must be use in a way to don't let a user see a profile page with no data
-  -null objects in it.
+  - You can't put anything important on the front-end and feeling that is safe because of UserMiddleware module.
+  - anything you send to front end is accessible by the client even if the UI doesn't let them to see it.
+  - UserMiddleware is just a module for responsiveness and good user experience.
+  - for example:
+    It must be use in a way to don't let a user see a profile page with no data
+    -null objects in it.
