@@ -1,4 +1,4 @@
-# What this repo is good for?
+# What is this repo is good for?
 
 - Is just a skeleton to create your authentication service with little modifications to the src code.
 
