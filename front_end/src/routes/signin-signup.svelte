@@ -1,5 +1,5 @@
 <script>
-	import LoginFacebook from '$lib/authentication/login-social/LoginFacebook.svelte';
+	import LoginFacebook from '$lib/authentication/login-social/facebook/LoginFacebook.svelte';
 	import ErrorMessage from '$lib/authentication/ErrorMessage.svelte';
 </script>
 

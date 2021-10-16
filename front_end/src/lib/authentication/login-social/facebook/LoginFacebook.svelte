@@ -1,6 +1,6 @@
 <script>
-	import { FacebookAuth } from '@beyonk/svelte-social-auth';
-	import { user, failureMsg } from '../../../stores/auth_store';
+	import FacebookAuth from './FacebookAuth.svelte';
+	import { user, failureMsg } from '/src/stores/auth_store';
 	import { goto } from '$app/navigation';
 	//PROPS
 	export let appIdValue;
